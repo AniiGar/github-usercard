@@ -90,17 +90,22 @@ axios.get('https://api.github.com/users/aniigar')
           Using DOM methods and properties, create a component that will return the following DOM element:
 
 <div class="card">
-  <img src={image url of user} />
-  <div class="card-info">
-    <h3 class="name">{users name}</h3>
-    <p class="username">{users user name}</p>
-    <p>Location: {users location}</p>
-    <p>Profile:  
-      <a href={address to users github page}>{address to users github page}</a>
-    </p>
-    <p>Followers: {users followers count}</p>
-    <p>Following: {users following count}</p>
-    <p>Bio: {users bio}</p>
+  <div>
+    <img src={image url of user} />
+    <div class="card-info">
+      <h3 class="name">{users name}</h3>
+      <p class="username">{users user name}</p>
+      <p>Location: {users location}</p>
+      <p>Profile:  
+        <a href={address to users github page}>{address to users github page}</a>
+      </p>
+      <p>Followers: {users followers count}</p>
+      <p>Following: {users following count}</p>
+      <p>Bio: {users bio}</p>
+    </div>
+  </div>
+  <div>
+    <img>
   </div>
 </div>
 
@@ -110,34 +115,48 @@ const githubUser = (object) => {
 
   // Create all elements
   const githubCard = document.createElement('div');
-      const githubImg = document.createElement('img');
-      const innerDiv = document.createElement('div');
-          const innerDivH3 = document.createElement('h3');
-          const usernameP = document.createElement('p');
-          const locationP = document.createElement('p');
-          const profileP = document.createElement('p');
-             const addressLink = document.createElement('a');
-          const followersP = document.createElement('p');
-          const followingP = document.createElement('p');
-          const bioP = document.createElement('p');
+    const holder = document.createElement('div');
+        const githubImg = document.createElement('img');
+        const innerDiv = document.createElement('div');
+            const innerDivH3 = document.createElement('h3');
+            const usernameP = document.createElement('p');
+            const locationP = document.createElement('p');
+            const profileP = document.createElement('p');
+              const addressLink = document.createElement('a');
+            const followersP = document.createElement('p');
+            const followingP = document.createElement('p');
+            const bioP = document.createElement('p');
+      const secondDiv = document.createElement('div');
+          const calendar = document.createElement('img');
+
 
   // Add classes to created elements
-  githubCard.classList.add('card');
+  githubCard.classList.add('flex');
+  githubCard.classList.add('card');  
+  githubImg.classList.add('profileImg');
+  holder.classList.add('flexRow');
   innerDiv.classList.add('card-info');
   innerDivH3.classList.add('name');
   usernameP.classList.add('username');
+  secondDiv.classList.add('card');
+  secondDiv.classList.add('div2');
+  calendar.classList.add('calendar');
+
 
   // Attach all elements to their parent element
-  githubCard.appendChild(githubImg);
-  githubCard.appendChild(innerDiv);
-      innerDiv.appendChild(innerDivH3);
-      innerDiv.appendChild(usernameP);
-      innerDiv.appendChild(locationP);
-      innerDiv.appendChild(profileP);
-          profileP.appendChild(addressLink);
-      innerDiv.appendChild(followersP);
-      innerDiv.appendChild(followingP);
-      innerDiv.appendChild(bioP);
+  githubCard.appendChild(holder);
+    holder.appendChild(githubImg);
+    holder.appendChild(innerDiv);
+        innerDiv.appendChild(innerDivH3);
+        innerDiv.appendChild(usernameP);
+        innerDiv.appendChild(locationP);
+        innerDiv.appendChild(profileP);
+            profileP.appendChild(addressLink);
+        innerDiv.appendChild(followersP);
+        innerDiv.appendChild(followingP);
+        innerDiv.appendChild(bioP);
+  githubCard.appendChild(secondDiv);
+      secondDiv.appendChild(calendar);
 
   // Assign content to all elements
   githubImg.src = object.data.avatar_url;
@@ -149,6 +168,8 @@ const githubUser = (object) => {
   followersP.textContent = `Followers: ${object.data.followers}`;
   followingP.textContent = `Following: ${object.data.following}`;
   bioP.textContent = object.data.bio;
+  calendar.src = `http://ghchart.rshah.org/6d32a8/${object.data.login}`;
+  calendar.alt = `${object.data.login}'s Github Chart`;
   
   // Return the whole user card
   return githubCard;
@@ -164,11 +185,12 @@ const githubUser = (object) => {
   bigknell
 */
 
-// Stretch: Added contribution calendar 
-const calDiv = document.createElement('div');
-calDiv.classList.add('calendar');
+// // Stretch: Added contribution calendar 
+// const entryPoint = document.querySelector('.cards');
 
-const firstCard = document.querySelector('.card');
-firstCard.appendChild(calDiv);
 
-console.log(firstCard);
+
+// // const firstCard = document.querySelector('.card');
+// entryPoint.prepend(calImg);
+
+// console.log(calImg);
