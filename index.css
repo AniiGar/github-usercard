@@ -101,7 +101,7 @@ body {
   margin-bottom: 30px;
 }
 
-.card img {
+.card .profileImg {
   width: 150px;
   height: 150px;
   border-radius: 3px;
@@ -123,5 +123,19 @@ body {
   margin: 3px 0 10px;
 }
 
+.flex {
+  display: flex;
+  flex-direction: column;
+}
 
+.flexRow {
+  display: flex;
+}
 
+.div2{
+  margin-top: 5%;;
+}
+
+.calendar {
+  width: 100%
+}
